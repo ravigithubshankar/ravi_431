@@ -1,0 +1,16 @@
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn import svm
+from sklearn.metrics import classification_report
+cancer=datasets.load_breast_cancer()
+import pandas as pd
+df=pd.DataFrame(cancer.data)
+print(df)
+print(cancer.feature_names)
+print(cancer.target_names)
+x_train,x_test,y_train,y_test=train_test_split(cancer.data,cancer.target,test_size=0.3,random_state=109)
+ravi=svm.SVC(kernel='rbf')
+ravi.fit(x_train,y_train)
+y_pred=ravi.predict(x_test)
+print(y_pred)
+print(classification_report(y_test,y_pred))
